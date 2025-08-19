@@ -78,12 +78,21 @@
   </div>
 
   <script>
-    const photos = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"];
+    // PNG olarak değiştirildi
+    const photos = ["foto1.png", "foto2.png", "foto3.png", "foto4.png"];
     let index = 0;
 
     const button = document.getElementById("button");
     const photo = document.getElementById("photo");
     const message = document.getElementById("message");
+
+    // Fotoğrafları önceden yükle (mobil için optimize)
+    const preloadedImages = [];
+    photos.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      preloadedImages.push(img);
+    });
 
     function showPhoto() {
       if (index < photos.length) {

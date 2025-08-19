@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babama Sürpriz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #add8e6; /* Tatlı mavi */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #photo {
+      max-width: 90%;
+      max-height: 60vh;
+      margin-bottom: 20px;
+      visibility: hidden;
+      opacity: 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: opacity 0.3s;
+    }
+
+    #button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4682b4;
+      color: white;
+      cursor: pointer;
+      display: block;
+    }
+
+    #button:hover {
+      background-color: #315f7c;
+    }
+
+    #message {
+      visibility: hidden;
+      opacity: 0;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 20px;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Babam için 💙</h1>
+    <img id="photo" src="" alt="fotoğraf">
+    <button id="button">Tıkla Baba 💙</button>
+    <div id="message">Seni Seviyorum Dosti 💙</div>
+  </div>
+
+  <script>
+    const photos = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg"];
+    let index = 0;
+
+    const button = document.getElementById("button");
+    const photo = document.getElementById("photo");
+    const message = document.getElementById("message");
+
+    function showPhoto() {
+      if (index < photos.length) {
+        button.style.display = "none";
+        photo.src = photos[index];
+        photo.style.visibility = "visible";
+        photo.style.opacity = 1;
+
+        setTimeout(() => {
+          photo.style.opacity = 0;
+          setTimeout(() => {
+            photo.style.visibility = "hidden";
+            button.style.display = "block";
+            index++;
+            if (index >= photos.length) {
+              button.style.display = "none";
+              message.style.visibility = "visible";
+              message.style.opacity = 1;
+            }
+          }, 300);
+        }, 2000);
+      }
+    }
+
+    // Mobil ve bilgisayar uyumlu click/touch
+    button.addEventListener("click", showPhoto);
+    button.addEventListener("touchstart", function(e){
+      e.preventDefault(); // çift tetiklemeyi önler
+      showPhoto();
+    });
+  </script>
+</body>
+</html>
